@@ -17,6 +17,24 @@ mongoose.connect(db, function(err, response){
   }
 });
 
+var router = express.Router();
+
+// GET
+router.get('/api/users', function(request, response){
+
+  Model.find({}, function(err, users){
+    if(err){
+      response.status(404).send(err);
+    }
+    else {
+      response.status(200).send(users);
+    }
+  });
+
+});
+
+app.use('/', router);
+
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
