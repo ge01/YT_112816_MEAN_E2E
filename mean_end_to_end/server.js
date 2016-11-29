@@ -23,9 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(morgan('dev'));
 
-app.get('/home', function(request, response){
-  response.status(200).send("<h1>Welcome to the mean stack</h1>");
-});
+app.use(express.static(__dirname + '/public'));
 
 app.listen(3000, function(){
   console.log('Listening on port 3000');
